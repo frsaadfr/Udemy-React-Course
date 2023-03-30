@@ -3,11 +3,10 @@
 console.log('APP.js is runninng');
 
 var template = React.createElement(
-  'p',
+  'h1',
   null,
-  'This is JSX from App.js!'
+  'Indecision App'
 );
-
 var appRoot = document.getElementById('app');
 
 ReactDOM.render(template, appRoot);
