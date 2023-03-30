@@ -1,29 +1,44 @@
-console.log('APP.js is runninng')
+console.log('APP.js is running')
+            // challenge 2 
+            // comppleted :}
 
-// Real Code 
+
+var user = {
+    title : 'Indesicion App',
+    subtitle : 'Put your life in the hands of a computer'
+
+}
 
  var template = 
 <div>
-    <h1>Indecision App</h1>
-    <p>This is some info</p>
-
-    <ol>
-        <li>This is some list item</li>
-    </ol>
+    <h1>{user.title}</h1>
+    <p>{user.subtitle}</p>
+<ol>
+<li>This is some Item</li>
+<li>This is some Item</li>
+</ol>
+    
 </div>; 
 
 
-                        //challenge code
+                        //challenge 1
 
                         // *completed :]
+var user = {
+    name : 'saad',
+    age : 16,
+    location : 'karachi'
+};
 
-/*
+var userName = "ali"
+var userAge = 27
+var userLocation = 'London'
 var templateTwo = 
 <div>
-    <h1>Saad</h1>
-    <p>16</p>
-    <p>Location:Pakistan</p>
-</div> */
+    <h1>{user.name}</h1>
+    <p>Age : {user.age}</p>
+    <p>Location: {user.location}</p>
+</div> 
 
 
 
