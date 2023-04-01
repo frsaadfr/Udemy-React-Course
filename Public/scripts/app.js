@@ -1,13 +1,15 @@
 'use strict';
 
 console.log('APP.js is running');
-// challenge 2 
-// comppleted :}
+// challenge code 
 
+// only render subtitle and p tag) if subtitle exists 
+//render new p tag if options.legnth > 0 "here are your options "no options"
 
-var user = {
+var app = {
     title: 'Indesicion App',
-    subtitle: 'Put your life in the hands of a computer'
+    subtitle: 'Put your life in the hands of a computer',
+    Options: ['one', 'two']
 
 };
 
@@ -17,12 +19,17 @@ var template = React.createElement(
     React.createElement(
         'h1',
         null,
-        user.title
+        app.title
     ),
     React.createElement(
         'p',
         null,
-        user.subtitle
+        app.subtitle && app.subtitle
+    ),
+    React.createElement(
+        'p',
+        null,
+        app.Options.length > 0 ? "here are your optons" : "no Options"
     ),
     React.createElement(
         'ol',
@@ -40,38 +47,40 @@ var template = React.createElement(
     )
 );
 
-//challenge 1
+//work code
 
-// *completed :]
 var user = {
     name: 'saad',
-    age: 16,
-    location: 'karachi'
+    age: 18,
+    location: 'philedelphia'
 };
 
-var userName = "ali";
-var userAge = 27;
-var userLocation = 'London';
+function getlocation(location) {
+    if (location) {
+        return React.createElement(
+            'p',
+            null,
+            'Location : ',
+            location
+        );
+    }
+}
+
 var templateTwo = React.createElement(
     'div',
     null,
     React.createElement(
         'h1',
         null,
-        user.name
+        user.name ? user.name : 'Anonymous'
     ),
-    React.createElement(
+    user.age >= 18 && React.createElement(
         'p',
         null,
         'Age : ',
         user.age
     ),
-    React.createElement(
-        'p',
-        null,
-        'Location: ',
-        user.location
-    )
+    getlocation(user.location)
 );
 
 var appRoot = document.getElementById('app');
