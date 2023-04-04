@@ -1,30 +1,20 @@
-//  function square(x) {
-//     return x*x;
-// }
+//argument object - no longer bound
+const add = (a, b) => {
+    // console.log(arguments)
+    return a + b;
+};
+console.log(add(5, 1, 10));
+//this keyword
+const user = {
+    name: 'saad',
+    cities: ['karachi', 'new york', 'lahore'],
+    printPlacesLived: function () {
+        console.log(this.name);
+        console.log(this.cities);
 
-//  console.log(square(3))
-
-// // const squareArrow = (x) => {
-// //     return x*x};
-
-// const squareArrow = (x) => x*x
-
-// console.log(squareArrow(4))
-
-//                       challenge 
-//                                     damn i can do it ;]
-//get first name 
-// regular arrow function
-// short ahnd arrow function 
-
-
-// const firstName = (fullname) => {
-//     return fullname.split(' ')[0];
-// }
-// console.log(firstName('saad osama'))
-
-// const firstName = (fullName) => fullName.split(' ')[0]
-//  console.log(firstName('saad osama'))
-
-const daddysName = bestFriends => bestFriends.split(' ')[0];
-console.log(daddysName('ayan solangi'));
+        this.cities.forEach(function (city) {
+            console.log(this.name + ' has lived in ' + city);
+        });
+    }
+};
+user.printPlacesLived();
