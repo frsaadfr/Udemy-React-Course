@@ -9,10 +9,8 @@ const user = {
     name: 'saad',
     cities: ['karachi', 'new york', 'lahore'],
     printPlacesLived: function () {
-        console.log(this.name);
-        console.log(this.cities);
 
-        this.cities.forEach(function (city) {
+        this.cities.forEach(city => {
             console.log(this.name + ' has lived in ' + city);
         });
     }
