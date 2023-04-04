@@ -26,5 +26,5 @@
 // const firstName = (fullName) => fullName.split(' ')[0]
 //  console.log(firstName('saad osama'))
 
-const daddysName = bestFriends => bestFriends.split(' ')[0];
-console.log(daddysName('ayan solangi'));
+const daddysName = (bestFriends) => bestFriends.split(' ')[0]
+console.log(daddysName('ayan solangi'))
