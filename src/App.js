@@ -25,30 +25,32 @@ const app = {
 
 
                         //work code
-
-const user = {
-    name : 'saad',
-    age : 18,
-    location : 'philedelphia'
+let count = 0;
+//addition function
+const addOne = () =>{
+console.log('addone')
 };
+//subtraction function
+const minusOne = () => {
+    console.log('minusOne')
+};
+//reset function
+const reset = () => {
+console.log('reset')
+};
+//buttons
+const templateTwo = (
+    <div>
+    <h1>Count: {count}</h1>
+    <button onClick={addOne}>+1</button>
 
+    <button onClick={minusOne}>-1</button>
 
-function getlocation (location) {
-    if (location){
-        return <p>Location : {location}</p>
-    }
-}
-
-
-const templateTwo = 
-<div>
-    <h1>{user.name ? user.name : 'Anonymous'}</h1>
-    {user.age >= 18 && <p>Age : {user.age}</p>}
-    {getlocation(user.location)}
-</div> 
-
+    <button onClick={reset}>reset</button>
+    </div>
+);
 
 
 const appRoot = document.getElementById('app');
 
-ReactDOM.render(template, appRoot);
+ReactDOM.render(templateTwo, appRoot);      

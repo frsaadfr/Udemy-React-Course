@@ -24,4 +24,5 @@
 // console.log(firstName('saad osama'))
 
  const firstName = (fullName) => fullName.split(' ')[0]
- console.log(firstName('saad osama'))
+//  console.log(firstName('saad osama'))
+
