@@ -7,55 +7,53 @@ console.log('APP.js is running')
 const app = {
     title : 'Indesicion App',
     subtitle : 'Put your life in the hands of a computer',
-    Options :['one','two' ]
+    Options :[]
 
-} 
+};
 
- const template = 
+
+
+
+
+
+const onFormSubmit = (e) => {
+e.preventDefault();
+const option = e.target.elements.option.value;
+
+if (option) {
+    app.Options.push(option);
+    e.target.elements.option.value = '';
+    render();
+}
+};
+
+ 
+
+const appRoot = document.getElementById('app');
+
+const wipe = () => {
+    app.Options = [];
+    render();
+}
+
+const render= () => {
+    const template = 
 <div>
     <h1>{app.title}</h1>
     <p>{app.subtitle && app.subtitle }</p>
     <p>{app.Options.length > 0 ? "here are your optons" : "no Options"}</p>
+    <p>{app.Options.length}</p>
+    <button onClick={wipe}>Remove All</button>
 <ol>
 <li>This is some Item</li>
 <li>This is some Item</li>
-</ol>
-    
+</ol>  
+<form onSubmit={onFormSubmit}>
+    <input type="text" name="option"></input>
+    <button>Add Option</button>
+</form>
 </div>; 
+ReactDOM.render(template, appRoot)
+}
 
-
-                        //work code
-let count = 0;
-//addition function
-const addOne = () =>{
-    count++;
-rendercounterApp();
-};
-//subtraction function
-const minusOne = () => {
-    count--;
-    rendercounterApp();
-};
-//reset function
-const reset = () => {
-count = count * 0;
-rendercounterApp();
-};
-
-const appRoot = document.getElementById('app');
-
-//buttons / rerendering
-const rendercounterApp = () => {
-    const templateTwo = (
-        <div>
-            <h1>Count: {count}</h1>
-                <button onClick={addOne}>+1</button>
-                <button onClick={minusOne}>-1</button>
-                <button onClick={reset}>reset</button>
-            </div>
-    );
-
-    ReactDOM.render(templateTwo, appRoot);      
-};
-
-rendercounterApp();
+render();
