@@ -24,12 +24,21 @@ var onFormSubmit = function onFormSubmit(e) {
     }
 };
 
-var appRoot = document.getElementById('app');
-
 var wipe = function wipe() {
     app.Options = [];
     render();
 };
+
+var onMakeDecision = function onMakeDecision() {
+    var randomNum = Math.floor(Math.random() * app.Options.length);
+    var option = app.Options[randomNum];
+    alert(option);
+    console.log(randomNum);
+};
+
+var numbers = [10, 100, 101];
+
+var appRoot = document.getElementById('app');
 
 var render = function render() {
     var template = React.createElement(
@@ -51,9 +60,9 @@ var render = function render() {
             app.Options.length > 0 ? "here are your optons" : "no Options"
         ),
         React.createElement(
-            'p',
-            null,
-            app.Options.length
+            'button',
+            { disabled: app.Options.length === 0, onClick: onMakeDecision },
+            'what should i do?'
         ),
         React.createElement(
             'button',
@@ -63,16 +72,13 @@ var render = function render() {
         React.createElement(
             'ol',
             null,
-            React.createElement(
-                'li',
-                null,
-                'This is some Item'
-            ),
-            React.createElement(
-                'li',
-                null,
-                'This is some Item'
-            )
+            app.Options.map(function (option) {
+                return React.createElement(
+                    'li',
+                    { key: option },
+                    option
+                );
+            })
         ),
         React.createElement(
             'form',

@@ -7,7 +7,7 @@ console.log('APP.js is running')
 const app = {
     title : 'Indesicion App',
     subtitle : 'Put your life in the hands of a computer',
-    Options :[]
+    Options : []
 
 };
 
@@ -27,14 +27,22 @@ if (option) {
 }
 };
 
- 
-
-const appRoot = document.getElementById('app');
 
 const wipe = () => {
     app.Options = [];
     render();
-}
+};
+
+const onMakeDecision = () => {
+const randomNum = Math.floor(Math.random() * app.Options.length);
+const option = app.Options[randomNum];
+alert(option);
+console.log(randomNum)
+};
+
+const numbers = [10, 100, 101]
+
+const appRoot = document.getElementById('app');
 
 const render= () => {
     const template = 
@@ -42,11 +50,14 @@ const render= () => {
     <h1>{app.title}</h1>
     <p>{app.subtitle && app.subtitle }</p>
     <p>{app.Options.length > 0 ? "here are your optons" : "no Options"}</p>
-    <p>{app.Options.length}</p>
+    <button disabled={app.Options.length === 0} onClick={onMakeDecision}>what should i do?</button>
     <button onClick={wipe}>Remove All</button>
+    
+
 <ol>
-<li>This is some Item</li>
-<li>This is some Item</li>
+{
+    app.Options.map((option) => <li key={option}>{option}</li>)
+}
 </ol>  
 <form onSubmit={onFormSubmit}>
     <input type="text" name="option"></input>
