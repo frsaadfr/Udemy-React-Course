@@ -1,3 +1,17 @@
+class IndesicionApp extends React.Component {
+    render(){
+        return(
+            <div>
+          <Header/>
+          <Action/>
+          <Options/>
+          <AddOption/>
+            </div>
+        );
+    }
+    
+}
+
 class Header extends React.Component {
 render(){
     return (
@@ -23,10 +37,23 @@ class Options extends React.Component {
         return (
             <div>
            Options Component here 
+           <Option/>
             </div>
         )
     }
 }
+
+class Option extends React.Component{
+render() {
+    return(
+        <div>
+        Option
+        </div>
+    )
+}
+
+}
+// option - option component here
 class AddOption extends React.Component {
     render(){
         return (
@@ -38,13 +65,6 @@ class AddOption extends React.Component {
 } 
 // clas option list - option component here 
 // addoption component - form - add option here 
-const jsx = (
-    <div>
-    <Header />
-    <Action />
-    <Options/>
-    <AddOption/>
-    </div>
-)
 
-ReactDOM.render(jsx, document.getElementById('app'))
+
+ReactDOM.render(<IndesicionApp />, document.getElementById('app'))
