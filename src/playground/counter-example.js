@@ -1,35 +1,44 @@
-
-
-
-
 class Counter extends React.Component {
     constructor(props) {
         super(props); 
         this.HandlePlusOne = this.HandlePlusOne.bind(this);
         this.HandleMinusOne = this.HandleMinusOne.bind(this);
         this.HandleReset = this.HandleReset.bind(this);
+        this.state = {
+            count: 0
+        }
     }
     HandlePlusOne() {
-        console.log('+1')
+        this.setState((prevState) => {
+            return {
+                count: prevState.count +1
+            }
+        });
     }
     HandleMinusOne() {
-        console.log('-1')
+        this.setState((prevState) => {
+            return {
+                count: prevState.count -1
+            }
+        });
     }
     HandleReset() {
-        console.log('reset')
+        this.setState(() => {
+            return {
+                count: 0
+            };
+        });
+
     }
     render() {
-        const HandlePlusOne = () => {
-            return console.log('+1')
-        };
 
         return (
-            <div>
-            <h1>Count: </h1>
-            <button onClick={this.HandlePlusOne}>+1</button>
-            <button onClick={this.HandleMinusOne}>-1</button>
-            <button onClick={this.HandleReset}>reset</button>
-            </div>
+           <div>
+           <h1>Count:{this.state.count}</h1>
+           <button onClick={this.HandlePlusOne}>+1</button>
+           <button onClick={this.HandleMinusOne}>-1</button>
+           <button onClick={this.HandleReset}>reset</button>
+           </div>
         )
     }
 }
