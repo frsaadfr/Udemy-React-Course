@@ -3,19 +3,41 @@ import AddOption from './AddOption';
 import Options from './Options'
 import Header from './Header';
 import Action from './Action';
+import OptionModal from "./OptionModal";
 
 export default class IndesicionApp extends React.Component {
-    constructor(props){
-        super(props);
-        this.HandleDeleteOptions = this.HandleDeleteOptions.bind(this)
-        this.HandlePick = this.HandlePick.bind(this)
-        this.handleAddOption = this.handleAddOption.bind(this)
-        this.HandleDeleteOption = this.HandleDeleteOption.bind(this);
-        this.state = {
-            options: []
-        }
+    
+    state = {
+        options: [],
+        selectedOption: undefined
     }
-    componentDidMount() {
+    WipeSelectedOption = () => {
+        this.setState(() => ({selectedOption:undefined}))
+    }
+    HandleDeleteOptions = () => {
+
+        this.setState(() => ({options:[]}))
+    }
+    HandleDeleteOption = (optionToRemove) => {
+        this.setState((prevState) => ({
+            options: prevState.options.filter((option) => optionToRemove !== option)
+        }))
+    }
+
+    HandlePick = () => {
+        const randomNum = Math.floor(Math.random() * this.state.options.length);
+        const option = this.state.options[randomNum];
+        this.setState(() => ({selectedOption: option}))
+    }
+    handleAddOption = (option) => {
+        if (!option) {
+            return 'enter valid value'
+        } else if (this.state.options.indexOf(option) > -1) {
+            return 'This option already exists';
+          }
+        this.setState((prevState) => ({options: prevState.options.concat(option)}))
+    }
+    componentDidMount = () => {
         try {
             const json = localStorage.getItem('options')
             const options = JSON.parse(json)
@@ -29,39 +51,17 @@ export default class IndesicionApp extends React.Component {
         
         }
     }
-    componentDidUpdate(prevProps, prevState) {
+    componentDidUpdate =(prevProps, prevState) => {
         if(prevState.options.length !== this.state.options.length){
            const json = JSON.stringify(this.state.options)
            localStorage.setItem('options',json);
             console.log('saving data');
         }
     }
-    componentWillUnmount() {
+    componentWillUnmount = () => {
         console.log('componentWillUnmount')
     }
-    HandleDeleteOptions() {
-
-        this.setState(() => ({options:[]}))
-    }
-    HandleDeleteOption(optionToRemove) {
-        this.setState((prevState) => ({
-            options: prevState.options.filter((option) => optionToRemove !== option)
-        }))
-    }
-
-    HandlePick() {
-        const randomNum = Math.floor(Math.random() * this.state.options.length);
-        const option = this.state.options[randomNum];
-        alert(option);
-    }
-    handleAddOption(option) {
-        if (!option) {
-            return 'enter valid value'
-        } else if (this.state.options.indexOf(option) > -1) {
-            return 'This option already exists';
-          }
-        this.setState((prevState) => ({options: prevState.options.concat(option)}))
-    }
+    
     render(){
 
        
@@ -79,6 +79,10 @@ export default class IndesicionApp extends React.Component {
           />
           <AddOption 
           handleAddOption = {this.handleAddOption}
+          />
+          <OptionModal 
+          selectedOption={this.state.selectedOption}
+          WipeSelectedOption={this.WipeSelectedOption}
           />
             </div>
         );
