@@ -23,8 +23,7 @@ module.exports = {
     },
     devtool: 'cheap-module-eval-source-map',
     devServer: {
-        contentBase: path.join(__dirname, 'Public'),
-        historyApiFallback: true
+        contentBase: path.join(__dirname, 'Public')
     }
 };
 // loader
